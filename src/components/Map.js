@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import { db } from '../config/firebase'
 import { Component } from 'react'
 import { RepoContext } from '../contexts/RepoContexts'
 import React, { useContext } from 'react';
+import LocationInfoBox from './LocationInfoBox';
+
+
+
 
 
 
@@ -14,8 +19,9 @@ import React, { useContext } from 'react';
 const Map = ({ center,zoom }) => {
 
     const { reports } = useContext(RepoContext);
+    const [locationInfo, setLocationInfo] = useState(null)
 
-    
+
     return (
         <div className="map">
             <GoogleMapReact
@@ -27,15 +33,11 @@ const Map = ({ center,zoom }) => {
                 {reports.map(report => {
                     return(
                         <LocationMarker lat={report['position'].geopoint.latitude}
-                        lng={report['position'].geopoint.longitude} />
+                        lng={report['position'].geopoint.longitude} onClick={() => setLocationInfo({id: report.id, email: report.email})}/>
                     )
                 })}
             </GoogleMapReact>
-            {/* {reports.map(report => {
-                    return(
-                    <p>{report['position'].geopoint.latitude}</p> 
-                    )
-                })} */}
+            {locationInfo && <LocationInfoBox info={locationInfo} />}
         </div>
     )
 }
