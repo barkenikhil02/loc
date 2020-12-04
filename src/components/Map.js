@@ -33,7 +33,7 @@ const Map = ({ center,zoom }) => {
                 {reports.map(report => {
                     return(
                         <LocationMarker lat={report['position'].geopoint.latitude}
-                        lng={report['position'].geopoint.longitude} onClick={() => setLocationInfo({id: report.id, email: report.email})}/>
+                        lng={report['position'].geopoint.longitude} onClick={() => setLocationInfo({imageurl: report.imageurl, username: report.username, comment: report.comment, address: report.address, landmark: report.landmark, department: report.department})}/>
                     )
                 })}
             </GoogleMapReact>
