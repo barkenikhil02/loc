@@ -1,3 +1,4 @@
+import { db } from '../config/firebase'
 const LocationInfoBox = ({ info }) => {
     return (
         <div className="location-info">

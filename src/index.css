@@ -5,13 +5,13 @@ body {
 }
 .map{
   width: 100vw;
-  height: 100vw;
+  height: 50vw;
   position: relative;
 }
 
 .location-icon{
   font-size: 2rem;
-  color: brown;
+  color: firebrick;
 }
 
 
@@ -60,4 +60,19 @@ body {
 
 .location-info li {
   padding: 5px 0;
+}
+
+.delButt button {
+  background-color: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 560px;
+  width: 440px;
+  right: 0px;
+  color: #ffffff;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
 }

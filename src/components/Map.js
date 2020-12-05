@@ -6,20 +6,50 @@ import { Component } from 'react'
 import { RepoContext } from '../contexts/RepoContexts'
 import React, { useContext } from 'react';
 import LocationInfoBox from './LocationInfoBox';
-
-
-
-
-
-
-
-
-
+import DelButt from './DelButt';
 
 const Map = ({ center,zoom }) => {
 
     const { reports } = useContext(RepoContext);
-    const [locationInfo, setLocationInfo] = useState(null)
+    const [locationInfo, setLocationInfo] = useState(null);
+
+    
+
+
+    const setCli = () => {
+        setLocationInfo(null);
+        db.collection('reports').doc(locationInfo.id).update({work:true})
+        console.log(locationInfo.id)
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    const markers = reports.map(report => {
+        if(report.work==false){
+        return(
+            <LocationMarker lat={report['position'].geopoint.latitude}
+            lng={report['position'].geopoint.longitude} onClick={() => setLocationInfo({id: report.id, imageurl: report.imageurl, username: report.username, comment: report.comment, address: report.address, landmark: report.landmark, department: report.department})}/>
+        )
+        }
+    })
+
+
+    
+
+
+        
+   
 
 
     return (
@@ -30,17 +60,21 @@ const Map = ({ center,zoom }) => {
                     defaultCenter={ center }
                     defaultZoom={ zoom }
             >
-                {reports.map(report => {
-                    return(
-                        <LocationMarker lat={report['position'].geopoint.latitude}
-                        lng={report['position'].geopoint.longitude} onClick={() => setLocationInfo({imageurl: report.imageurl, username: report.username, comment: report.comment, address: report.address, landmark: report.landmark, department: report.department})}/>
-                    )
-                })}
+                
+                {markers}
+                
             </GoogleMapReact>
+            
             {locationInfo && <LocationInfoBox info={locationInfo} />}
+
+                {locationInfo && <DelButt onclick={setCli}/> }
+            
+            
         </div>
     )
 }
+
+
 Map.defaultProps = {
     center: {
         lat: 19.8563182,
