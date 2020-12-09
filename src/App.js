@@ -1,6 +1,6 @@
 import Map from './components/Map'
 import React from 'react';
-import { RepoContext, ReportContextProvider } from './contexts/RepoContexts'
+import { ReportContextProvider } from './contexts/RepoContexts'
 // import { db } from './config/firebase'
 import Header from './components/Header'
 

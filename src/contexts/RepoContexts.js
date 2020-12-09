@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import firebase, { db } from '../config/firebase'
+import { db } from '../config/firebase'
 
 export const RepoContext = createContext();
 

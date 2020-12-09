@@ -2,7 +2,6 @@ import { useState } from 'react';
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
 import { db } from '../config/firebase'
-import { Component } from 'react'
 import { RepoContext } from '../contexts/RepoContexts'
 import React, { useContext } from 'react';
 import LocationInfoBox from './LocationInfoBox';
